@@ -44,7 +44,11 @@ module Captchameifyoucan
             img = img.white_threshold(245).median(2)
 
           end
-          p image.to_s_without_spaces # Getting the value
+          text = image.to_s_without_spaces # Getting the value
+
+          page.form().first.field_with(:name=>"cametu").value = text
+          result = page.submit()
+          p result.body
         end
       end
       run!
